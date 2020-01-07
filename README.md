@@ -20,7 +20,6 @@ Note that this example may create resources which can cost money (AWS EC2 instan
 |------|-------------|:----:|:-----:|
 | project | This variable of your product/appilication name | string | yes |
 | stage | This variable of your environment | string | yes |
-| branch | Branch name of repository | string | yes |
 | health_check_path | Health check path of application for terget group | string | yes |
 | key_name | PEM file for access aws EC2 instance | string | yes |
 | container_port | ECS Cluster, Container port | string | yes |
