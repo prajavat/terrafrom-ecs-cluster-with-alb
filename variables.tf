@@ -5,17 +5,31 @@ variable "region" {
 
 variable "AWS_PROFILE" {
   default = "prajavat-terraform"
+  description = "Setup aws access as profile"
 }
 
 # Application Variable
 variable "name" {
   type        = string
   default     = "ironbridge"
+  description = "This variable of your product/appilication name "
 }
 
 variable "stage" {
   type        = string
   default     = "prod"
+  description = "This variable of your environment"
+}
+
+######## Codecommit/Repo Variable ########
+variable "repo_name" {
+  type        = string
+  default     = "Irinbridge-laravel"
+}
+
+variable "branch" {
+  type        = string
+  default     = "master"
 }
 
 #### EC2 Instance Variable
@@ -77,17 +91,6 @@ variable "deployment_maximum_percent" {
 
 variable "health_check_path" {
   default = "/admin/login"
-}
-
-######## Codecommit/Repo Variable ########
-variable "repo_name" {
-  type        = string
-  default     = "Irinbridge-laravel"
-}
-
-variable "branch" {
-  type        = string
-  default     = "master"
 }
 
 ######## CodeBuild Variable ########
