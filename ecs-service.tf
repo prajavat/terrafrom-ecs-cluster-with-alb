@@ -9,14 +9,6 @@ resource "aws_security_group" "loadbalancer_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # ingress {
-  #   from_port   = 0
-  #   to_port     = 0
-  #   protocol    = "-1"
-  #   # cidr_blocks = ["aws_security_group.container_instance.id"]
-  #   security_groups = ["aws_security_group.container_instance.id"]
-  # }
-
   ingress {
     from_port   = 80
     to_port     = 80
@@ -86,7 +78,7 @@ data "template_file" "task-definitions" {
   template = file("${path.module}/task-definitions/service.json")
 
   vars = {
-    ecs_image_name = var.image_repo_name
+    ecs_image_name = var.ecr_image_name
     image_tag = "latest"
     name = var.project
     port = var.container_port

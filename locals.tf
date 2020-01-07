@@ -1,25 +1,19 @@
 locals {
-  codepipline_bucket_name = "${var.name}-${var.stage}-codepipeline-bucket"
-  codepipline_name = "${var.name}-${var.stage}-codepipeline"
-  codepipline_iam_role_name = "${var.name}-${var.stage}-codepipeline-iam-role"
-  codepipline_iam_policy_name = "${var.name}-${var.stage}-codepipeline-iam-policy"
-  codebuild_iam_policy_name = "${var.name}-${var.stage}-codebuild-iam-policy"
-}
-
-resource "random_string" "bucket_prefix" {
-  length  = 12
-  number  = false
-  upper   = false
-  special = false
-  lower   = true
-}
-
-locals {
-  cache_bucket_name = "${local.codepipline_bucket_name}${var.cache_bucket_suffix_enabled ? "-${join("", random_string.bucket_prefix.*.result)}" : ""}"
-
-  cache_bucket_name_normalised = substr(
-    join("-", split("_", lower(local.cache_bucket_name))),
-    0,
-    min(length(local.cache_bucket_name), 63),
-  )
+ cluster_name = "${var.project}-${var.environment}-cluster"
+ security_group_name = "${var.project}-${var.environment}-sg"
+ autoscaling_group_name = "${var.project}-${var.environment}-ag"
+ service_name = "${var.project}-${var.environment}-service"
+ instance_name = "${var.project}-${var.environment}-instance"
+ cloudwatch_name = "${var.project}-${var.environment}-cloudwatch"
+ task_name = "${var.project}-${var.environment}"
+ loadbalancer_sg_name = "${var.project}-${var.environment}-LoadBalancer-sg"
+ loadbalancer_name = "${var.project}-${var.environment}-LoadBalancer"
+ target_group_name = "${var.project}-${var.environment}-tg"
+ autoscaling_policy_up = "${var.project}-${var.environment}-ScaleUp"
+ autoscaling_policy_down = "${var.project}-${var.environment}-ScaleDown"
+ alarm_name_hight = "${var.project}-${var.environment}-RequestCountPerTarget-High"
+ alarm_name_low = "${var.project}-${var.environment}-RequestCountPerTarget-Low"
+ vpc_name = "${var.project}-${var.environment}-vpc"
+ ecs_service_role_name = "${var.project}-${var.environment}-ecs-role"
+ ecs_for_ec2_service_role_name = "${var.project}-${var.environment}-ec2-role"
 }
