@@ -1,6 +1,6 @@
 variable "project" {}
 
-variable "environment" {}
+variable "stage" {}
 
 variable "key_name" {}
 

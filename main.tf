@@ -104,7 +104,7 @@ resource "aws_security_group" "container_instance" {
 
   tags = {
     Project     = var.project
-    Environment = var.environment
+    Environment = var.stage
   }
 }
 
@@ -167,7 +167,7 @@ data "aws_ami" "user_ami" {
 }
 
 resource "aws_launch_template" "container_instance" {
-  name  = "${var.project}-${var.environment}-template"
+  name  = "${var.project}-${var.stage}-template"
   block_device_mappings {
     device_name = var.lookup_latest_ami ? join("", data.aws_ami.ecs_ami.*.root_device_name) : join("", data.aws_ami.user_ami.*.root_device_name)
 
@@ -202,7 +202,7 @@ resource "aws_launch_template" "container_instance" {
 }
 
 resource "aws_autoscaling_policy" "policy" {
-  name                      = "${var.project}-${var.environment}-policy"
+  name                      = "${var.project}-${var.stage}-policy"
   policy_type               = "TargetTrackingScaling"
   autoscaling_group_name    = aws_autoscaling_group.container_instance.name
   estimated_instance_warmup = 200
@@ -264,7 +264,7 @@ resource "aws_autoscaling_group" "container_instance" {
 
   tag {
     key                 = "Environment"
-    value               = var.environment
+    value               = var.stage
     propagate_at_launch = true
   }
 }

@@ -18,7 +18,7 @@ resource "aws_security_group" "loadbalancer_sg" {
 
   tags = {
     Project     = var.project
-    Environment = var.environment
+    Environment = var.stage
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_alb" "loadbalancer" {
   tags = {
     Name        = local.loadbalancer_name
     Project     = var.project
-    Environment = var.environment
+    Environment = var.stage
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_alb_target_group" "loadbalancer" {
   tags = {
     Name        = local.target_group_name
     Project     = var.project
-    Environment = var.environment
+    Environment = var.stage
   }
 }
 

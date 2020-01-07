@@ -14,7 +14,7 @@ module "main-vpc" {
 
   tags = {
     Terraform   = "true"
-    Environment = var.environment
+    Environment = var.stage
   }
 }
 
