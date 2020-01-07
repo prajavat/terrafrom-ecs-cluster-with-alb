@@ -1,4 +1,4 @@
-# Terrafrom ECS Cluster with ALB & AutoScaling Gorup
+# Terrafrom ECS Cluster with Service
 
 This example uses only verified Terraform modules to create all resources that are needed for an ECS cluster that is sufficient for staging or production environment.
 
@@ -18,9 +18,8 @@ Note that this example may create resources which can cost money (AWS EC2 instan
 
 | Name | Description | Type | Required |
 |------|-------------|:----:|:-----:|
-| name | This variable of your product/appilication name | string | yes |
+| project | This variable of your product/appilication name | string | yes |
 | stage | This variable of your environment | string | yes |
-| repo_name | Source repository of your application | string | yes |
 | branch | Branch name of repository | string | yes |
 | health_check_path | Health check path of application for terget group | string | yes |
 | key_name | PEM file for access aws EC2 instance | string | yes |
