@@ -1,15 +1,22 @@
-variable "project" {}
-
-variable "stage" {}
-
-variable "key_name" {}
-
-variable "ecr_image_name" {}
-
 variable "region" {
   type        = string
   default     = "us-east-1"
 }
+
+# Befour deploy ECS Cluster must set project name, stage name, key_name, ecr_image_name
+variable "project" {
+  description = "This variable of your product/appilication name"
+}
+
+variable "stage" {
+  description = "This variable of your environment"
+}
+
+variable "key_name" {
+  description = "PEM file for access aws EC2 instance"
+}
+
+variable "ecr_image_name" {}
 
 variable "instance_type" {
   type        = string
